@@ -4,6 +4,7 @@ import board.Board;
 import astrophage.Astrophage;
 import java.util.List;
 import java.util.ArrayList;
+import simulation.Randomizer;
 
 public class Simulation {
     private Board board;
@@ -18,7 +19,7 @@ public class Simulation {
         this.astrophage = new ArrayList<>();
         this.stepCount = 0;
         this.isRunning = true;
-        this.regenerationCost = SimulationRandom.regenerationCostRandom();
+        this.regenerationCost = Randomizer.random(0, 10);
         this.astrophageAmount = numAgents;
     }
 
