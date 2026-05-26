@@ -30,12 +30,10 @@ public class Board {
         return 0;
     }
 
-    public void diffusion(int x1, int y1, int x2, int y2,
-                          float brightness1, float brightness2) {
+    public void diffusion(int x1, int y1, int x2, int y2, float brightness1, float brightness2) {
     }
 
-    public void brightnessSpread(int x1, int y1, int x2, int y2,
-                                 float brightness1, float brightness2) {
+    public void brightnessSpread(int x1, int y1, int x2, int y2, float brightness1, float brightness2) {
     }
 
     public void newCore(int coreDis) {
