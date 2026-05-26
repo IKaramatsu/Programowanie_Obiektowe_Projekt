@@ -3,6 +3,7 @@ package simulation;
 import board.Board;
 import astrophage.Astrophage;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Simulation {
     private Board board;
@@ -11,4 +12,22 @@ public class Simulation {
     private boolean isRunning;
     private int regenerationCost;
     private int astrophageAmount;
+
+    private Simulation(int width, int height, int numAgents) {
+        this.board = new Board(width, height);
+        this.astrophage = new ArrayList<>();
+        this.stepCount = 0;
+        this.isRunning = true;
+        this.regenerationCost = SimulationRandom.regenerationCostRandom();
+        this.astrophageAmount = numAgents;
+    }
+
+    private void initialize() {
+    }
+
+    private void step() {
+    }
+
+    private void end(int steps) {
+    }
 }
