@@ -10,13 +10,13 @@ public class Cell {
     private float brightness;
     private boolean core, shadow;
 
-    public Cell(int x, int y, List<Astrophage> agents, float brightness, boolean core, boolean shadow, int regeneration){
+    public Cell(int x, int y, List<Astrophage> agents, float brightness, int regeneration){
         this.x = x;
         this.y = y;
         this.agents = new ArrayList<>();
         this.brightness = brightness;
-        this.core = core;
-        this.shadow = shadow;
+        this.core = false;
+        this.shadow = false;
         this.regeneration = regeneration;
     }
 
@@ -29,6 +29,11 @@ public class Cell {
 
     public void setCore(boolean core){
         this.core = core;
+    }
+
+    public void setShadow(boolean shadow)
+    {
+        this.shadow = shadow;
     }
 
     public int getX(){
