@@ -5,6 +5,10 @@ import simulation.Randomizer;
 public class AstrophageRandom {
 
     public static int placeRandom(){
+        /*tak mi wpadło do głowy: powinnyśmy chyba zmienić tą funkcję tak,
+        żeby losowała miejsca istniejąca na mapie (np jeśli ktoś zrobi mapę 10/10,
+        to może zostać wylosowane 30, co będzie poza)
+        (nie zmieniam tego, bo nie chcę wam mieszać w funkcjach)*/
         return Randomizer.random(0,50);
     }
 
