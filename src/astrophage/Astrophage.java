@@ -1,6 +1,6 @@
 package astrophage;
 
-import astrophage.AstrophageRandom;
+import simulation.AstrophageRandom;
 
 public class Astrophage {
     private int id;

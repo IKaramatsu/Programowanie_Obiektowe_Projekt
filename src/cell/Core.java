@@ -1,6 +1,6 @@
 package cell;
 
-import astrophage.AstrophageRandom;
+import simulation.AstrophageRandom;
 
 public class Core {
     public boolean death(Cell cell){

@@ -1,6 +1,7 @@
 package board;
 
 import cell.Cell;
+import board.Grid;
 
 public class Board {
     private int width;
@@ -10,7 +11,8 @@ public class Board {
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
-        this.grid = new Cell[width][height];
+        Grid g = new Grid();
+        this.grid = g.create(width, height, 5.0f, 2);
     }
 
     public boolean inBounds(int x, int y) {
