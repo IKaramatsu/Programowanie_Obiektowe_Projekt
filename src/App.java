@@ -4,7 +4,7 @@ import simulation.Simulation;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Simulation sim = new Simulation(50, 50, 3);
+        Simulation sim = new Simulation(50, 3);
         
         System.out.println("Symulacja wystartowała!");
         System.out.println("Liczba agentów: " + sim.getAstrophage().size());

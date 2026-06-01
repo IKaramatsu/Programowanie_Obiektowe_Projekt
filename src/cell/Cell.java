@@ -5,19 +5,17 @@ import java.util.List;
 import astrophage.Astrophage;
 
 public class Cell {
-    private int x, y, regeneration;
+    private int x, y;
     private List<Astrophage> agents;
     private float brightness;
-    private boolean core, shadow;
+    private boolean core;
 
-    public Cell(int x, int y, List<Astrophage> agents, float brightness, int regeneration){
+    public Cell(int x, int y, List<Astrophage> agents){
         this.x = x;
         this.y = y;
         this.agents = new ArrayList<>();
-        this.brightness = brightness;
+        this.brightness = 0;
         this.core = false;
-        this.shadow = false;
-        this.regeneration = regeneration;
     }
 
     public boolean isEmpty(){
@@ -27,13 +25,12 @@ public class Cell {
         return false;
     }
 
-    public void setCore(boolean core){
-        this.core = core;
+    public void setBrightness(float brightness){
+        this.brightness = brightness;
     }
 
-    public void setShadow(boolean shadow)
-    {
-        this.shadow = shadow;
+    public void setCore(boolean core){
+        this.core = core;
     }
 
     public int getX(){
@@ -54,13 +51,5 @@ public class Cell {
 
     public boolean getCore(){
         return core;
-    }
-
-    public boolean getShadow(){
-        return shadow;
-    }
-
-    public int getRegeneration(){
-        return regeneration;
     }
 }

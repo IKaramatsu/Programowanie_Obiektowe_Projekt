@@ -1,13 +1,9 @@
 package simulation;
 
-public class AstrophageRandom {
+public class RandomVariables {
 
-    public static int placeRandom(){
-        /*tak mi wpadło do głowy: powinnyśmy chyba zmienić tą funkcję tak,
-        żeby losowała miejsca istniejąca na mapie (np jeśli ktoś zrobi mapę 10/10,
-        to może zostać wylosowane 30, co będzie poza)
-        (nie zmieniam tego, bo nie chcę wam mieszać w funkcjach)*/
-        return Randomizer.random(0,49);
+    public static int placeRandom(int size){
+        return Randomizer.random(0,size-1);
     }
 
     public static float energyRandom(){
@@ -24,5 +20,9 @@ public class AstrophageRandom {
 
     public static int reproductionLvlRandom(){
         return Randomizer.random(0, 10);
+    }
+
+    public static float brightnessRandom(){
+        return Randomizer.random(1, 10);
     }
 }

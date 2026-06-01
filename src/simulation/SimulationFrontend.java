@@ -15,15 +15,14 @@ import cell.Cell;
 public class SimulationFrontend extends Application {
 
     static final int CELL_SIZE = 12;
-    static final int WIDTH = 50;
-    static final int HEIGHT = 50;
+    static final int SIZE = 50;
 
     private Simulation sim;
 
     public void start(Stage stage) {
-        sim = new Simulation(WIDTH, HEIGHT, 10);
+        Simulation sim = new Simulation(SIZE, 10);
         
-        Canvas canvas = new Canvas(WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE);
+        Canvas canvas = new Canvas(SIZE * CELL_SIZE, SIZE * CELL_SIZE);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         AnimationTimer timer = new AnimationTimer() {
@@ -51,8 +50,8 @@ public class SimulationFrontend extends Application {
     private void draw(GraphicsContext gc) {
         Cell[][] grid = sim.getGrid();
         
-        for (int x = 0; x < WIDTH; x++) {
-            for (int y = 0; y < HEIGHT; y++) {
+        for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
                 float brightness = grid[x][y].getBrightness();
                 gc.setFill(Color.color(brightness / 10.0, brightness / 10.0, 0));
                 gc.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
