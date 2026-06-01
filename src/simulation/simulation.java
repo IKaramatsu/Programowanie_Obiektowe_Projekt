@@ -6,6 +6,7 @@ import astrophage.Astrophage;
 import cell.Cell;
 import java.util.List;
 import java.util.ArrayList;
+import simulation.RandomVariables;
 
 public class Simulation {
     private Board board;
@@ -28,6 +29,14 @@ public class Simulation {
             Astrophage a = new Astrophage(i, size);
             this.astrophage.add(a);
         }
+
+        for(int x = 0; x < size; x++){
+            for(int y = 0; y < size; y++){
+                grid[x][y].setBrightness(
+                 RandomVariables.brightnessRandom()
+            );
+            }
+        }
     }
 
     public void removeDeadAstrophages() {
@@ -45,4 +54,5 @@ public class Simulation {
     public Board getBoard() {
         return board;
     }
+    
 }

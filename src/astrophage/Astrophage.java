@@ -60,6 +60,10 @@ public class Astrophage {
         this.y = y;
     }
 
+    public void setAge(int age){
+        this.age = age;
+    }
+
     public void setEnergy(float energy){
         this.energy = energy;
     }  

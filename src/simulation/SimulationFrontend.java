@@ -19,26 +19,32 @@ public class SimulationFrontend extends Application {
 
     private Simulation sim;
 
+    @Override
     public void start(Stage stage) {
-        Simulation sim = new Simulation(SIZE, 10);
-        
+
+        this.sim = new Simulation(SIZE, 10);
+
         Canvas canvas = new Canvas(SIZE * CELL_SIZE, SIZE * CELL_SIZE);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         AnimationTimer timer = new AnimationTimer() {
             private long lastUpdate = 0;
 
+            @Override
             public void handle(long now) {
-                // krok co 200ms
+
                 if (now - lastUpdate >= 200_000_000) {
-                    for (Astrophage a : sim.getAstrophage()) {
-                        Moving.move(a, sim.getGrid());
+
+                    for (Astrophage a : SimulationFrontend.this.sim.getAstrophage()) {
+                        Moving.move(a, SimulationFrontend.this.sim.getGrid());
                     }
+
                     draw(gc);
                     lastUpdate = now;
                 }
             }
         };
+
         timer.start();
 
         Scene scene = new Scene(new StackPane(canvas));
