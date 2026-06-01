@@ -38,4 +38,8 @@ public class Board {
 
     public void newCore(int coreDis) {
     }
+
+    public int getSize() {
+        return this.size;
+    }
 }
