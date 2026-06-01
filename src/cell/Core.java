@@ -15,7 +15,7 @@ public class Core {
         int x = RandomVariables.placeRandom(size);
         int y = RandomVariables.placeRandom(size);
         
-        grid[x][y].setCore(true);
-        grid[x][y].setBrightness(RandomVariables.brightnessRandom());
+        grid[y][x].setCore(true);
+        grid[y][x].setBrightness(RandomVariables.brightnessRandom());
     }
 }

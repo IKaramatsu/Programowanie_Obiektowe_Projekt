@@ -7,7 +7,7 @@ public class RandomVariables {
     }
 
     public static float energyRandom(){
-        return (float)Randomizer.random(0,19);
+        return (float)Randomizer.random(0,18);
     }
 
     public static float energyMaxRandom(int min){

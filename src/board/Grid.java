@@ -10,6 +10,8 @@ public class Grid {
                 grid[j][i] = new Cell(j, i, null);
             }
         }
+        
+        
 
         return grid;
     }
