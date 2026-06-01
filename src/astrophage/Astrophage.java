@@ -1,6 +1,6 @@
 package astrophage;
 
-import simulation.AstrophageRandom;
+import simulation.RandomVariables;
 
 public class Astrophage {
     private int id;
@@ -9,15 +9,15 @@ public class Astrophage {
     private int age, ageMax;
     private int reproductionLvl;
 
-    public Astrophage(int id){
+    public Astrophage(int id, int size){
         this.id = id;
-        this.x = AstrophageRandom.placeRandom();
-        this.y = AstrophageRandom.placeRandom();
-        this.energy = AstrophageRandom.energyRandom();
-        this.energyMax = AstrophageRandom.energyMaxRandom((int) this.energy);
+        this.x = RandomVariables.placeRandom(size);
+        this.y = RandomVariables.placeRandom(size);
+        this.energy = RandomVariables.energyRandom();
+        this.energyMax = RandomVariables.energyMaxRandom((int) this.energy);
         this.age = 1;
-        this.ageMax = AstrophageRandom.ageMaxRandom();
-        this.reproductionLvl = AstrophageRandom.reproductionLvlRandom();
+        this.ageMax = RandomVariables.ageMaxRandom();
+        this.reproductionLvl = RandomVariables.reproductionLvlRandom();
     }
 
     public int getX(){

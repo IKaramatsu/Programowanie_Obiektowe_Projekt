@@ -13,21 +13,19 @@ public class Simulation {
     private List<Astrophage> astrophage;
     private int stepCount;
     private boolean isRunning;
-    private int regenerationCost;
     private int astrophageAmount;
 
-    public Simulation(int width, int height, int numAgents) {
-        this.board = new Board(width, height);
-        this.regenerationCost = 2;
+    public Simulation(int size, int numAgents) {
+        this.board = new Board(size);
         Grid g = new Grid();
-        this.grid = g.create(width, height, 5.0f, regenerationCost);
+        this.grid = g.create(size);
         this.astrophage = new ArrayList<>();
         this.stepCount = 0;
         this.isRunning = true;
         this.astrophageAmount = numAgents;
 
         for (int i = 1; i <= numAgents; i++) {
-            Astrophage a = new Astrophage(i);
+            Astrophage a = new Astrophage(i, size);
             this.astrophage.add(a);
         }
     }

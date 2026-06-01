@@ -4,15 +4,13 @@ import cell.Cell;
 import board.Grid;
 
 public class Board {
-    private int width;
-    private int height;
+    private int size;
     private Cell[][] grid;
 
-    public Board(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Board(int size) {
+        this.size = size;
         Grid g = new Grid();
-        this.grid = g.create(width, height, 5.0f, 2);
+        this.grid = g.create(size);
     }
 
     public boolean inBounds(int x, int y) {
