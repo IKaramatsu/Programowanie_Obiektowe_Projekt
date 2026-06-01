@@ -1,5 +1,6 @@
 import astrophage.Astrophage;
 import astrophage.Moving;
+import astrophage.Aging;
 import simulation.Simulation;
 
 public class App {
@@ -16,16 +17,12 @@ public class App {
             for (Astrophage astro : sim.getAstrophage()) {
                 Moving.move(astro, sim.getGrid());
                 System.out.println("Agent x" + astro.getX() + " y=" + astro.getY());
+                Aging.aging(astro);
             }
+
+            sim.removeDeadAstrophages();
         }
         
         System.out.println("done");
     }
 }
-
- //ten kod powyzej przeniesc i dostosowac do simulation, 
-        // a tu zostawić poniższy kod i go odkomentować
-        /*
-        Simulation simulation = new Simulation();
-        simulation.start();
-        */

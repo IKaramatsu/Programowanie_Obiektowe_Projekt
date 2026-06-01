@@ -5,7 +5,7 @@ import cell.Cell;
 
 public class Moving {
     private static int[][] directions = {
-        {1, 0}, // up 0 0 Y 0 1 X
+        {1, 0}, // up
         {1, 1}, // right-up
         {0, 1}, // right
         {-1, 1}, //right-down
@@ -80,7 +80,17 @@ public class Moving {
     }
 
     public static void move(Astrophage astro, Cell[][] grid){
-        int[] bestPlace = analyze(astro, grid);
-        deciding(astro, grid, bestPlace);
+        int x = astro.getX();
+        int y = astro.getY();
+        Cell cell = grid[x][y];
+        
+        if(cell.getBrightness() == 0) {
+            int[] bestPlace = analyze(astro, grid);
+            deciding(astro, grid, bestPlace);
+            astro.setEnergy(astro.getEnergy() - 1);
+            Exhaustion.exhaustion(astro);
+        }
+        
+        Absorption.absorption(astro, grid);
     }
 }

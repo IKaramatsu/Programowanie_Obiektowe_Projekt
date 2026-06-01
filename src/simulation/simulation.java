@@ -30,11 +30,19 @@ public class Simulation {
         }
     }
 
+    public void removeDeadAstrophages() {
+        astrophage.removeIf(a -> !a.getIsAlive());
+    }
+
     public List<Astrophage> getAstrophage() {
         return astrophage;
     }
 
     public Cell[][] getGrid() {
         return grid;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }
