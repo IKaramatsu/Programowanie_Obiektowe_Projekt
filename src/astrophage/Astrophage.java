@@ -52,6 +52,10 @@ public class Astrophage {
         return this.isAlive;
     } 
 
+    public int getReproductionLvl(){
+        return this.reproductionLvl;
+    } 
+
     public void setX(int x){
         this.x = x;
     }
@@ -66,7 +70,19 @@ public class Astrophage {
 
     public void setEnergy(float energy){
         this.energy = energy;
+    } 
+    
+    public void setEnergyMax(float energyMax){
+        this.energyMax = energyMax;
     }  
+
+    public void setAgeMax(int ageMax){
+        this.ageMax = ageMax;
+    }  
+    
+    public void setRepLvl(int repLvl){
+        this.reproductionLvl = repLvl;
+    } 
 
     public void setIsAlive(boolean isAlive){
         this.isAlive = isAlive;
