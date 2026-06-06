@@ -1,26 +1,22 @@
-import astrophage.Astrophage;
-import astrophage.Moving;
-import astrophage.Aging;
 import simulation.Simulation;
+import simulation.UserInput;
+import astrophage.Astrophage;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Simulation sim = new Simulation(50, 10);
+        UserInput input = new UserInput();
+        input.getInput();
+        Simulation sim = new Simulation(input);
         
         System.out.println("Symulacja wystartowała!");
         System.out.println("Liczba agentów: " + sim.getAstrophage().size());
         
-        // 10 kroków symulacji
-        for (int step = 1; step <= 10; step++) {
+        for (int step = 1; step <= sim.getSimulationSpan(); step++) {
             System.out.println("--- Krok " + step + " ---");
-            
+            sim.update();
             for (Astrophage astro : sim.getAstrophage()) {
-                Moving.move(astro, sim.getGrid());
-                System.out.println("Agent x" + astro.getX() + " y=" + astro.getY());
-                Aging.aging(astro);
+                System.out.println("Agent x=" + astro.getX() + " y=" + astro.getY());
             }
-
-            sim.removeDeadAstrophages();
         }
         
         System.out.println("done");

@@ -29,8 +29,11 @@ public class RandomVariables {
     }
 
     public static float inheritanceEnergyMaxRandom(Astrophage parent){
-        return Randomizer.random((int) parent.getEnergy() + 1, (int) parent.getEnergyMax());
-    }
+    int min = (int) parent.getEnergy();
+    int max = (int) parent.getEnergyMax();
+    if (min >= max) return max;
+    return Randomizer.random(min + 1, max);
+}
 
     public static int inheritanceAgeMaxRandom(Astrophage parent){
         return Randomizer.random(2, parent.getAgeMax());
@@ -41,6 +44,9 @@ public class RandomVariables {
     }
 
     public static float brightnessRandom(){
-        return Randomizer.random(1, 10);
+        return Randomizer.random(1, 4);
+    }
+    public static float moveOffset(){
+        return Randomizer.random(-4, 4);
     }
 }

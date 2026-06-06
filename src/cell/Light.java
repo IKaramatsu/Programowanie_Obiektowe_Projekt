@@ -5,15 +5,34 @@ public class Light {
     public void regenerate(float lightGiven, Cell[][] grid, int size, Cell core){
         int coreX = core.getX();
         int coreY = core.getY();
-        for(int i = coreY-1; i <= coreY + 1; i++){
-            for(int j = coreX-1; j <= coreX + 1; j++){
-                if(grid[j][i].getCore()){
-                    iluminate(lightGiven, grid[j][i]);
-                }
-                else{
-                    if (i >= 0 && i < size && j >= 0 && j < size) {
-                        iluminate(lightGiven-1, grid[j][i]);
+
+        float[][] oldBrightness = new float[size][size];
+        for(int x = 0; x < size; x++)
+            for(int y = 0; y < size; y++)
+                oldBrightness[y][x] = grid[y][x].getBrightness();
+
+        // rdzeń zawsze ma pełne światło
+        grid[coreY][coreX].setBrightness(lightGiven);
+
+        for(int x = 0; x < size; x++){
+            for(int y = 0; y < size; y++){
+                if(grid[y][x].getCore()) continue;
+
+                float bestNeighbour = 0;
+                for(int dx = -1; dx <= 1; dx++){
+                    for(int dy = -1; dy <= 1; dy++){
+                        if(dx == 0 && dy == 0) continue;
+                        int nx = x + dx;
+                        int ny = y + dy;
+                        if(nx < 0 || nx >= size || ny < 0 || ny >= size) continue;
+                        if(oldBrightness[ny][nx] > bestNeighbour)
+                            bestNeighbour = oldBrightness[ny][nx];
                     }
+                }
+
+                float newLight = bestNeighbour - 1;
+                if(newLight > grid[y][x].getBrightness()){
+                    iluminate(newLight, grid[y][x]);
                 }
             }
         }
@@ -21,8 +40,7 @@ public class Light {
 
     private void iluminate(float lightGiven, Cell cell){
         cell.setBrightness(lightGiven);
-        if (cell.getBrightness() > 10) {
-            cell.setBrightness(10);
-        }
+        if(cell.getBrightness() > 10) cell.setBrightness(10);
+        if(cell.getBrightness() < 0) cell.setBrightness(0);
     }
 }
