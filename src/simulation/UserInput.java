@@ -7,7 +7,7 @@ public class UserInput {
     public float movementCost;
     public int simulationSpan;
     public int lifeLength;
-    public float coreRegeneration;
+    public int coreAmount;
 
     public void getInput() {
         Scanner myObj = new Scanner(System.in);
@@ -21,8 +21,8 @@ public class UserInput {
         simulationSpan = myObj.nextInt();
         System.out.println("Enter the lifespan of each astrophage:");
         lifeLength = myObj.nextInt();
-        System.out.println("Enter the core regeneration speed:");
-        coreRegeneration = myObj.nextFloat();
+        System.out.println("Enter the core amount:");
+        coreAmount = myObj.nextInt();
         myObj.close();
     }
 }

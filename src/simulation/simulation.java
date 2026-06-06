@@ -27,14 +27,16 @@ public class Simulation {
     private float movementCost;
     private int lifeLength;
     private int simulationSpan;
-    private float coreRegeneration;
+    private int coreAmount;
+    private int coreCounter;
+
 
     public Simulation(UserInput input) {
         this.size = input.boardSize;
         this.movementCost = input.movementCost;
         this.lifeLength = input.lifeLength;
         this.simulationSpan = input.simulationSpan;
-        this.coreRegeneration = input.coreRegeneration;
+        this.coreAmount = input.coreAmount;
         this.board = new Board(input.boardSize);
         Grid g = new Grid();
         this.grid = g.create(input.boardSize);
@@ -50,12 +52,13 @@ public class Simulation {
             this.astrophage.add(a);
         }
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < input.coreAmount; i++) {
             core.create(grid, input.boardSize);
         }
     }
 
     public void update() {
+        coreCounter = 0;
         if (stepCount >= simulationSpan) {
             isRunning = false;
             return;
@@ -81,12 +84,15 @@ public class Simulation {
                 Cell cell = grid[y][x];
                 if (cell.getCore()) {
                     core.death(cell);
-                    light.regenerate(coreRegeneration, grid, size, cell);
+                    coreCounter++;
+
+                    light.regenerate(8, grid, size, cell);
                 }
+
             }
         }
 
-        if (stepCount % 10 == 0) {
+        if (coreCounter < coreAmount && stepCount % 5 == 0) {
             core.create(grid, size);
         }
         Diffusion.diffuse(grid, size);

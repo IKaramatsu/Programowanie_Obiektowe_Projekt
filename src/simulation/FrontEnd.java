@@ -50,7 +50,7 @@ public class FrontEnd extends Application {
         gcBackground.fillText(String.valueOf(input.movementCost), 1105, 335);
         gcBackground.fillText(String.valueOf(input.simulationSpan), 1500, 335);
         gcBackground.fillText(String.valueOf(input.lifeLength), 1105, 488);
-        gcBackground.fillText(String.valueOf(input.coreRegeneration), 1500, 488);
+        gcBackground.fillText(String.valueOf(input.coreAmount), 1500, 488);
 
         drawBoard();
 
@@ -64,7 +64,7 @@ public class FrontEnd extends Application {
 
             @Override
             public void handle(long now) {
-                if (now - lastUpdate >= 500_000_000) {
+                if (now - lastUpdate >= 500_000_000) {//zmiencie na wolniej jak chcecie ogarnac lepiej co sie wizualnie dzieje
                     simulation.update();
                     drawBoard();
                     lastUpdate = now;
@@ -76,6 +76,7 @@ public class FrontEnd extends Application {
     }
 
     public void drawBoard() {
+        
         Cell[][] grid = simulation.getGrid();
         int size = simulation.getSize();
         double cellSize = 800.0 / size;
@@ -102,13 +103,14 @@ public class FrontEnd extends Application {
             }
         }
 
-        // astrophage na osobnej warstwie ze SCREEN blending
+        // blending mody zeby wygladalo hot
+        //astrofagi
         gcAstro.clearRect(0, 0, 800, 800);
         for (Astrophage a : simulation.getAstrophage()) {
             double offset = cellSize * 0.15;
             gcAstro.setFill(Color.rgb(255, 124, 124));
             gcAstro.fillOval(
-                a.getX() * cellSize + offset + RandomVariables.moveOffset(),
+                a.getX() * cellSize + offset + RandomVariables.moveOffset(),// dodany randomowy offset zeby lepiej bylo widac ile astrofagow jest na polu
                 a.getY() * cellSize + offset + RandomVariables.moveOffset(),
                 cellSize - 2 * offset,
                 cellSize - 2 * offset
