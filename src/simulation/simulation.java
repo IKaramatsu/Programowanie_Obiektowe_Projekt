@@ -22,6 +22,7 @@ public class Simulation {
     private boolean isRunning;
     private int astrophageAmount;
     private int size;
+    private int AllCoreAmount;
     private Core core;
     private Light light;
     private float movementCost;
@@ -85,14 +86,15 @@ public class Simulation {
                 if (cell.getCore()) {
                     core.death(cell);
                     coreCounter++;
+                    
 
-                    light.regenerate(8, grid, size, cell);
+                    light.regenerate(7, grid, size, cell);
                 }
 
             }
         }
 
-        if (coreCounter < coreAmount && stepCount % 5 == 0) {
+        if (coreCounter < coreAmount && stepCount % 3 == 0) {
             core.create(grid, size);
         }
         Diffusion.diffuse(grid, size);
@@ -126,5 +128,6 @@ public class Simulation {
     public int getAstrophageAmount() {
         return astrophage == null ? 0 : astrophage.size();
     }
-    
+
+
 }

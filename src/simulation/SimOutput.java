@@ -1,16 +1,16 @@
 package simulation;
 
-import simulation.Simulation;
 
 public class SimOutput {
     private static int allAstro = 0;
 
-    public int getAllAstrophageAmount(Simulation sim) {
+    public static int getAllAstrophageAmount(Simulation sim) {
         allAstro = allAstro + sim.getAstrophageAmount();
         return allAstro;
     }
 
-    public float getAverageEnergy(Simulation sim) {
+
+    public  static float getAverageEnergy(Simulation sim) {
 
         if (sim.getAstrophage().isEmpty()) {
             return 0;

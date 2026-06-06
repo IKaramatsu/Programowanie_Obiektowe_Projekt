@@ -1,9 +1,11 @@
 package cell;
 
 import simulation.RandomVariables;
+import simulation.SimOutput;
 
 public class Core {
     private static int coreCount = 0;
+    public static int AllCoreAmount;
 
     public boolean death(Cell cell){
         if (cell.getCore() && cell.getBrightness() == 0){
@@ -18,6 +20,8 @@ public class Core {
         int y = RandomVariables.placeRandom(size);
 
         coreCount();
+        AllCoreAmount++;
+
         
         grid[y][x].setCore(true);
         grid[y][x].setBrightness(RandomVariables.brightnessRandom());
