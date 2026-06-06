@@ -122,5 +122,9 @@ public class Simulation {
     }
     public int getSimulationSpan() { return simulationSpan; 
     }
+
+    public int getAstrophageAmount() {
+        return astrophage == null ? 0 : astrophage.size();
+    }
     
 }
