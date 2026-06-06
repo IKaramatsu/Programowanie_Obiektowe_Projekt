@@ -3,10 +3,16 @@ package simulation;
 import board.Board;
 import board.Grid;
 import astrophage.Astrophage;
+import astrophage.Moving;
+import astrophage.Aging;
+import astrophage.Reproduction;
 import cell.Cell;
+import cell.Core;
+import cell.Diffusion;
+import cell.Light;
 import java.util.List;
 import java.util.ArrayList;
-import simulation.RandomVariables;
+import cell.Diffusion;
 
 public class Simulation {
     private Board board;
@@ -15,44 +21,100 @@ public class Simulation {
     private int stepCount;
     private boolean isRunning;
     private int astrophageAmount;
+    private int size;
+    private Core core;
+    private Light light;
+    private float movementCost;
+    private int lifeLength;
+    private int simulationSpan;
+    private float coreRegeneration;
 
-    public Simulation(int size, int numAgents) {
-        this.board = new Board(size);
+    public Simulation(UserInput input) {
+        this.size = input.boardSize;
+        this.movementCost = input.movementCost;
+        this.lifeLength = input.lifeLength;
+        this.simulationSpan = input.simulationSpan;
+        this.coreRegeneration = input.coreRegeneration;
+        this.board = new Board(input.boardSize);
         Grid g = new Grid();
-        this.grid = g.create(size);
+        this.grid = g.create(input.boardSize);
         this.astrophage = new ArrayList<>();
         this.stepCount = 0;
         this.isRunning = true;
-        this.astrophageAmount = numAgents;
+        this.astrophageAmount = input.agentAmount;
+        this.core = new Core();
+        this.light = new Light();
 
-        for (int i = 1; i <= numAgents; i++) {
-            Astrophage a = new Astrophage(i, size);
+        for (int i = 1; i <= input.agentAmount; i++) {
+            Astrophage a = new Astrophage(i, input.boardSize);
             this.astrophage.add(a);
         }
 
-        for(int x = 0; x < size; x++){
-            for(int y = 0; y < size; y++){
-                grid[x][y].setBrightness(
-                 RandomVariables.brightnessRandom()
-            );
+        for (int i = 0; i < 5; i++) {
+            core.create(grid, input.boardSize);
+        }
+    }
+
+    public void update() {
+        if (stepCount >= simulationSpan) {
+            isRunning = false;
+            return;
+        }
+        stepCount++;
+
+        for (Astrophage a : astrophage) {
+            Moving.move(a, grid, movementCost);
+            Aging.aging(a, lifeLength);
+        }
+
+        List<Astrophage> newborns = new ArrayList<>();
+        int newId = astrophage.size() + 1;
+        for (Astrophage a : astrophage) {
+            Reproduction.reproduction(a, newborns, newId++, size);
+        }
+        astrophage.addAll(newborns);
+
+        removeDeadAstrophages();
+
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                Cell cell = grid[y][x];
+                if (cell.getCore()) {
+                    core.death(cell);
+                    light.regenerate(coreRegeneration, grid, size, cell);
+                }
             }
         }
+
+        if (stepCount % 10 == 0) {
+            core.create(grid, size);
+        }
+        Diffusion.diffuse(grid, size);
     }
 
     public void removeDeadAstrophages() {
         astrophage.removeIf(a -> !a.getIsAlive());
     }
 
-    public List<Astrophage> getAstrophage() {
-        return astrophage;
+    public List<Astrophage> getAstrophage() { return astrophage; }
+    public Cell[][] getGrid() { return grid; }
+    public Board getBoard() { return board; }
+    public int getStepCount() { return stepCount; }
+    public int getSize() { return size; }
+    public boolean getIsRunning() { return isRunning; }
+
+    public double getBoardCoveragePercentage() {
+        return (double) astrophage.size() / (size * size) * 100;
     }
 
-    public Cell[][] getGrid() {
-        return grid;
+    public double getEnvironmentEnergy() {
+        double total = 0;
+        for (int x = 0; x < size; x++)
+            for (int y = 0; y < size; y++)
+                total += grid[y][x].getBrightness();
+        return total;
     }
-
-    public Board getBoard() {
-        return board;
+    public int getSimulationSpan() { return simulationSpan; 
     }
     
 }

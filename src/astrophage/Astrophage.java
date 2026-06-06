@@ -74,7 +74,7 @@ public class Astrophage {
     
     public void setEnergyMax(float energyMax){
         this.energyMax = energyMax;
-    }  
+    }  //to nie jest juz potrzebne
 
     public void setAgeMax(int ageMax){
         this.ageMax = ageMax;

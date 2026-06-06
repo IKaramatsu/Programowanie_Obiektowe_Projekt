@@ -79,7 +79,7 @@ public class Moving {
         }
     }
 
-    public static void move(Astrophage astro, Cell[][] grid){
+    public static void move(Astrophage astro, Cell[][] grid, float movementCost){
         int x = astro.getX();
         int y = astro.getY();
         Cell cell = grid[y][x];
@@ -87,7 +87,7 @@ public class Moving {
         //if(cell.getBrightness() == 0) {
             int[] bestPlace = analyze(astro, grid);
             deciding(astro, grid, bestPlace);
-            astro.setEnergy(astro.getEnergy() - 1);
+            astro.setEnergy(astro.getEnergy() - movementCost);
             Exhaustion.exhaustion(astro);
         //}
         
