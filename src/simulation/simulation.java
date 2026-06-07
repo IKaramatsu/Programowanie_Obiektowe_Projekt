@@ -64,6 +64,12 @@ public class Simulation {
             isRunning = false;
             return;
         }
+
+        if (astrophage.isEmpty()) {
+            isRunning = false;
+            return;
+        }
+
         stepCount++;
 
         for (Astrophage a : astrophage) {
