@@ -9,7 +9,6 @@ public class Grid {
         for(int x = 0; x < size; x++){
             for(int y = 0; y < size; y++){
                 grid[y][x] = new Cell(x, y, null);
-                grid[y][x].setBrightness(RandomVariables.brightnessRandom());
             }
         }
         return grid;

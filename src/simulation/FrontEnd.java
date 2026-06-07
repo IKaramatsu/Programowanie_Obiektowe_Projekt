@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import astrophage.Astrophage;
@@ -58,7 +59,6 @@ public class FrontEnd extends Application {
         gcBackground.fillText(String.valueOf(input.agentAmount), 1105, 183);
         gcBackground.fillText(String.valueOf(input.boardSize), 1500, 183);
         gcBackground.fillText(String.valueOf(input.movementCost), 1105, 335);
-        gcBackground.fillText(String.valueOf(input.simulationSpan), 1500, 335);
         gcBackground.fillText(String.valueOf(input.lifeLength), 1105, 488);
         gcBackground.fillText(String.valueOf(input.coreAmount), 1500, 488);
 
@@ -74,7 +74,14 @@ public class FrontEnd extends Application {
 
             @Override
             public void handle(long now) {
-                if (now - lastUpdate >= 500_000_000) {//zmiencie na wolniej jak chcecie ogarnac lepiej co sie wizualnie dzieje
+
+                if (!simulation.getIsRunning()) {
+                    stop();
+                    drawBoard();
+                    return;
+                }
+
+                if (now - lastUpdate >= 500_000_000) {
                     simulation.update();
                     drawBoard();
                     lastUpdate = now;
@@ -94,6 +101,7 @@ public class FrontEnd extends Application {
         gcData.fillText(String.valueOf(SimOutput.getAllAstrophageAmount(simulation)), 1500, 768);
         gcData.fillText(String.valueOf(Core.AllCoreAmount), 1105, 923);
         gcData.fillText(String.valueOf(SimOutput.getAverageEnergy(simulation)), 1500, 923);
+        gcData.fillText(simulation.getStepCount() + "/" + simulation.getSimulationSpan(),1500,335);
         Cell[][] grid = simulation.getGrid();
 
         int size = simulation.getSize();
@@ -147,6 +155,22 @@ public class FrontEnd extends Application {
                     cellSize - 2 * offset
                 );
             }
+        }
+
+        if (!simulation.getIsRunning()) {
+
+            gcData.setFill(new Color(0, 0, 0, 0.6));
+            gcData.fillRect(0, 0, 1920, 1080);
+
+
+            gcData.setFill(Color.WHITE);
+            gcData.setFont(Font.font("Courier New", FontWeight.BOLD, 48));
+
+            gcData.fillText("SIMULATION FINISHED",305,500);
+
+            gcData.setFont(Font.font("Courier New", FontWeight.BOLD, 28));
+
+            gcData.fillText("Ticks: " + simulation.getStepCount() + "/" + simulation.getSimulationSpan(),470,560);
         }
     }
 
