@@ -46,7 +46,7 @@ public class RandomVariables {
     public static float brightnessRandom(){
         return Randomizer.random(1, 4);
     }
-    public static float moveOffset(){
+    public static int moveOffset(){
         return Randomizer.random(-4, 4);
     }
 }

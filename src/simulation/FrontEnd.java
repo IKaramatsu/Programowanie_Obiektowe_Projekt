@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -14,15 +15,22 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import astrophage.Astrophage;
 import cell.Cell;
+import cell.Core;
+import simulation.RandomVariables;
+import java.util.Random;
 
 public class FrontEnd extends Application {
 
     Canvas Background = new Canvas(1920, 1080);
     Canvas Board = new Canvas(800, 800);
     Canvas AstrophageLayer = new Canvas(800, 800);
+    Canvas AstrophageLayer2 = new Canvas(800, 800);
+    Canvas SimData = new Canvas(1920, 1080);
     GraphicsContext gcBackground = Background.getGraphicsContext2D();
     GraphicsContext gcBoard = Board.getGraphicsContext2D();
+    GraphicsContext gcData = SimData.getGraphicsContext2D();
     GraphicsContext gcAstro = AstrophageLayer.getGraphicsContext2D();
+    GraphicsContext gcAstro2 = AstrophageLayer2.getGraphicsContext2D();
     Image GUI = new Image(getClass().getResourceAsStream("/resources/astrophage ABM simulation.png"));
     Pane root = new Pane();
     Simulation simulation;
@@ -34,14 +42,16 @@ public class FrontEnd extends Application {
         simulation = new Simulation(input);
 
         gcBackground.drawImage(GUI, 0, 0, 1920, 1080);
-
         Board.setLayoutX(179);
         Board.setLayoutY(135);
         AstrophageLayer.setLayoutX(179);
         AstrophageLayer.setLayoutY(135);
         AstrophageLayer.setBlendMode(BlendMode.SCREEN);
+        AstrophageLayer2.setLayoutX(179);
+        AstrophageLayer2.setLayoutY(135);
+        AstrophageLayer2.setBlendMode(BlendMode.SCREEN);
 
-        root.getChildren().addAll(Board, AstrophageLayer, Background);
+        root.getChildren().addAll(Board, AstrophageLayer, AstrophageLayer2, Background, SimData);
 
         gcBackground.setFill(Color.rgb(100, 45, 45));
         gcBackground.setFont(Font.font("Courier New", FontWeight.BOLD, 24));
@@ -76,8 +86,16 @@ public class FrontEnd extends Application {
     }
 
     public void drawBoard() {
-        
+        gcData.clearRect(0, 0, 1920, 1080);
+        //dane 
+        gcData.setFill(Color.rgb(100, 45, 45));
+        gcData.setFont(Font.font("Courier New", FontWeight.BOLD, 24));
+        gcData.fillText(String.valueOf(simulation.getAstrophageAmount()), 1105, 768);
+        gcData.fillText(String.valueOf(SimOutput.getAllAstrophageAmount(simulation)), 1500, 768);
+        gcData.fillText(String.valueOf(Core.AllCoreAmount), 1105, 923);
+        gcData.fillText(String.valueOf(SimOutput.getAverageEnergy(simulation)), 1500, 923);
         Cell[][] grid = simulation.getGrid();
+
         int size = simulation.getSize();
         double cellSize = 800.0 / size;
 
@@ -106,15 +124,29 @@ public class FrontEnd extends Application {
         // blending mody zeby wygladalo hot
         //astrofagi
         gcAstro.clearRect(0, 0, 800, 800);
+        gcAstro2.clearRect(0, 0, 800, 800);
+        
         for (Astrophage a : simulation.getAstrophage()) {
+            if (Math.random() > 0.5){
             double offset = cellSize * 0.15;
-            gcAstro.setFill(Color.rgb(255, 124, 124));
-            gcAstro.fillOval(
-                a.getX() * cellSize + offset + RandomVariables.moveOffset(),// dodany randomowy offset zeby lepiej bylo widac ile astrofagow jest na polu
-                a.getY() * cellSize + offset + RandomVariables.moveOffset(),
-                cellSize - 2 * offset,
-                cellSize - 2 * offset
-            );
+                gcAstro.setFill(Color.rgb(255, 124, 124));
+                gcAstro.fillOval(
+                    a.getX() * cellSize + offset + RandomVariables.moveOffset(),// dodany randomowy offset zeby lepiej bylo widac ile astrofagow jest na polu
+                    a.getY() * cellSize + offset + RandomVariables.moveOffset(),
+                    cellSize - 2 * offset,
+                    cellSize - 2 * offset
+                );
+            }
+            else {
+                double offset = cellSize * 0.15;
+                gcAstro2.setFill(Color.rgb(255, 124, 124));
+                gcAstro2.fillOval(
+                    a.getX() * cellSize + offset + RandomVariables.moveOffset(),
+                    a.getY() * cellSize + offset + RandomVariables.moveOffset(),
+                    cellSize - 2 * offset,
+                    cellSize - 2 * offset
+                );
+            }
         }
     }
 

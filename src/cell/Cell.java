@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import astrophage.Astrophage;
+import simulation.Simulation;
 
 public class Cell {
     private int x, y;
