@@ -98,7 +98,7 @@ public class FrontEnd extends Application {
         gcData.setFill(Color.rgb(100, 45, 45));
         gcData.setFont(Font.font("Courier New", FontWeight.BOLD, 24));
         gcData.fillText(String.valueOf(simulation.getAstrophageAmount()), 1105, 768);
-        gcData.fillText(String.valueOf(SimOutput.getAllAstrophageAmount(simulation)), 1500, 768);
+        gcData.fillText(String.valueOf(simulation.getAllAstroAmount()), 1500, 768);
         gcData.fillText(String.valueOf(Core.AllCoreAmount), 1105, 923);
         gcData.fillText(String.valueOf(SimOutput.getAverageEnergy(simulation)), 1500, 923);
         gcData.fillText(simulation.getStepCount() + "/" + simulation.getSimulationSpan(),1500,335);

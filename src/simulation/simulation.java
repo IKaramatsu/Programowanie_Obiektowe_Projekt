@@ -30,6 +30,7 @@ public class Simulation {
     private int simulationSpan;
     private int coreAmount;
     private int coreCounter;
+    private int allAstroAmount;
 
 
     public Simulation(UserInput input) {
@@ -47,6 +48,7 @@ public class Simulation {
         this.astrophageAmount = input.agentAmount;
         this.core = new Core();
         this.light = new Light();
+        this.allAstroAmount = input.agentAmount;
 
         for (int i = 1; i <= input.agentAmount; i++) {
             Astrophage a = new Astrophage(i, input.boardSize);
@@ -83,6 +85,7 @@ public class Simulation {
             Reproduction.reproduction(a, newborns, newId++, size);
         }
         astrophage.addAll(newborns);
+        allAstroAmount += newborns.size();
 
         removeDeadAstrophages();
 
@@ -134,6 +137,10 @@ public class Simulation {
     public int getAstrophageAmount() {
         return astrophage == null ? 0 : astrophage.size();
     }
+
+    public int getAllAstroAmount() {
+    return allAstroAmount;
+}
 
 
 }
