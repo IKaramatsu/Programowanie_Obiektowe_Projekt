@@ -21,6 +21,10 @@ public class Astrophage {
         this.reproductionLvl =  RandomVariables.reproductionLvlRandom();
     }
 
+    /**
+     * Gives the Id of this astrophage.
+     * @return Id of this astrophage
+     */
     public int getId(){
         return this.id;
     }
