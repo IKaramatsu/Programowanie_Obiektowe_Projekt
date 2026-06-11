@@ -5,20 +5,20 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.chart.PieChart.Data;
+//import javafx.scene.chart.PieChart.Data;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
+//import javafx.scene.text.TextAlignment;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import astrophage.Astrophage;
 import cell.Cell;
 import cell.Core;
-import simulation.RandomVariables;
-import java.util.Random;
+//import simulation.RandomVariables;
+//import java.util.Random;
 
 public class FrontEnd extends Application {
 

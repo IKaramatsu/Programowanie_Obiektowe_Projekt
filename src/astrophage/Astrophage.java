@@ -1,7 +1,6 @@
 package astrophage;
 
 import simulation.RandomVariables;
-import board.Board;
 
 public class Astrophage {
     private int id;
@@ -10,11 +9,9 @@ public class Astrophage {
     private int age, ageMax;
     private int reproductionLvl;
     private boolean isAlive = true;
-    private int boardSize;
 
     public Astrophage(int id, int size){
         this.id = id;
-        this.boardSize = size;
         this.x =  RandomVariables.placeRandom(size-1);
         this.y =  RandomVariables.placeRandom(size-1);
         this.energy =  RandomVariables.energyRandom();
@@ -22,6 +19,10 @@ public class Astrophage {
         this.age = 1;
         this.ageMax = RandomVariables.ageMaxRandom();
         this.reproductionLvl =  RandomVariables.reproductionLvlRandom();
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     //dla Moving
@@ -74,8 +75,8 @@ public class Astrophage {
     
     public void setEnergyMax(float energyMax){
         this.energyMax = energyMax;
-    }  //to nie jest juz potrzebne
-
+    }
+    
     public void setAgeMax(int ageMax){
         this.ageMax = ageMax;
     }  

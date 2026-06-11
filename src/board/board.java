@@ -1,42 +1,16 @@
 package board;
 
-import cell.Cell;
-import board.Grid;
+//import cell.Cell;
+//import board.Grid;
 
 public class Board {
     private int size;
-    private Cell[][] grid;
+    //private Cell[][] grid;
 
     public Board(int size) {
         this.size = size;
-        Grid g = new Grid();
-        this.grid = g.create(size);
-    }
-
-    public boolean inBounds(int x, int y) {
-        return false;
-    }
-
-    public void placeAgents(int x, int y) {
-    }
-
-    public void moveAgents(int newX, int newY) {
-    }
-
-    public void removeAgents() {
-    }
-
-    public int getCellmates(int x, int y) {
-        return 0;
-    }
-
-    public void diffusion(int x1, int y1, int x2, int y2, float brightness1, float brightness2) {
-    }
-
-    public void brightnessSpread(int x1, int y1, int x2, int y2, float brightness1, float brightness2) {
-    }
-
-    public void newCore(int coreDis) {
+        //Grid g = new Grid();
+        //this.grid = g.create(size);
     }
 
     public int getSize() {

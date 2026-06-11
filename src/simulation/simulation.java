@@ -1,6 +1,6 @@
 package simulation;
 
-import board.Board;
+//import board.Board;
 import board.Grid;
 import astrophage.Astrophage;
 import astrophage.Moving;
@@ -12,17 +12,14 @@ import cell.Diffusion;
 import cell.Light;
 import java.util.List;
 import java.util.ArrayList;
-import cell.Diffusion;
 
 public class Simulation {
-    private Board board;
+    //private Board board;
     private Cell[][] grid;
     private List<Astrophage> astrophage;
     private int stepCount;
     private boolean isRunning;
-    private int astrophageAmount;
     private int size;
-    private int AllCoreAmount;
     private Core core;
     private Light light;
     private float movementCost;
@@ -39,13 +36,12 @@ public class Simulation {
         this.lifeLength = input.lifeLength;
         this.simulationSpan = input.simulationSpan;
         this.coreAmount = input.coreAmount;
-        this.board = new Board(input.boardSize);
+        //this.board = new Board(input.boardSize);
         Grid g = new Grid();
         this.grid = g.create(input.boardSize);
         this.astrophage = new ArrayList<>();
         this.stepCount = 0;
         this.isRunning = true;
-        this.astrophageAmount = input.agentAmount;
         this.core = new Core();
         this.light = new Light();
         this.allAstroAmount = input.agentAmount;
@@ -115,7 +111,7 @@ public class Simulation {
 
     public List<Astrophage> getAstrophage() { return astrophage; }
     public Cell[][] getGrid() { return grid; }
-    public Board getBoard() { return board; }
+    //public Board getBoard() { return board; }
     public int getStepCount() { return stepCount; }
     public int getSize() { return size; }
     public boolean getIsRunning() { return isRunning; }
@@ -141,6 +137,4 @@ public class Simulation {
     public int getAllAstroAmount() {
     return allAstroAmount;
 }
-
-
 }

@@ -32,13 +32,18 @@ public class Light {
 
                 float newLight = bestNeighbour - 1;
                 if(newLight > grid[y][x].getBrightness()){
-                    iluminate(newLight, grid[y][x]);
+                    illuminate(newLight, grid[y][x]);
                 }
             }
         }
     }
 
-    private void iluminate(float lightGiven, Cell cell){
+    /**
+     * Sets the light of a given cell to a given value and ensures that the brightness remains between 0 and 10.
+     * @param lightGiven the value of brightness to be given to the cell
+     * @param cell the cell the light is given to
+     */
+    private void illuminate(float lightGiven, Cell cell){
         cell.setBrightness(lightGiven);
         if(cell.getBrightness() > 10) cell.setBrightness(10);
         if(cell.getBrightness() < 0) cell.setBrightness(0);
