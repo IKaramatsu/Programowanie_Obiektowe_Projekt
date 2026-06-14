@@ -29,7 +29,10 @@ public class Simulation {
     private int coreCounter;
     private int allAstroAmount;
 
-
+    /**
+     * The simulation of the whole model.
+     * @param input the values inputted by the user
+     */
     public Simulation(UserInput input) {
         this.size = input.boardSize;
         this.movementCost = input.movementCost;
@@ -56,6 +59,9 @@ public class Simulation {
         }
     }
 
+    /**
+     * Performes all the actions the simulation does in one tick.
+     */
     public void update() {
         coreCounter = 0;
         if (stepCount >= simulationSpan) {
@@ -105,15 +111,38 @@ public class Simulation {
         Diffusion.diffuse(grid, size);
     }
 
+    /**
+     * Removes all the dead astrophages from the list of the astrophages currently on the board.
+     */
     public void removeDeadAstrophages() {
         astrophage.removeIf(a -> !a.getIsAlive());
     }
 
+    /**
+     * Gives the list of the astrophages currently on the board.
+     * @return the list of the astrophages currently on the board
+     */
     public List<Astrophage> getAstrophage() { return astrophage; }
+    /**
+     * Gives the current board.
+     * @return the current board
+     */
     public Cell[][] getGrid() { return grid; }
     //public Board getBoard() { return board; }
+    /**
+     * Gives the current number of performed steps of the simulation.
+     * @return the current number of performed steps of the simulation
+     */
     public int getStepCount() { return stepCount; }
+    /**
+     * Gives the size of the board.
+     * @return the size of the board
+     */
     public int getSize() { return size; }
+    /**
+     * Tells if the simulation is currently running.
+     * @return true if the simulation is currently running, false if not
+     */
     public boolean getIsRunning() { return isRunning; }
 
     public double getBoardCoveragePercentage() {
@@ -127,14 +156,26 @@ public class Simulation {
                 total += grid[y][x].getBrightness();
         return total;
     }
+    /**
+     * Gives the maxumum length of the simulation.
+     * @return the maxumum length of the simulation
+     */
     public int getSimulationSpan() { return simulationSpan; 
     }
 
+    /**
+     * Gives the current ammount of the astrophages on the board.
+     * @return the current ammount of the astrophages on the board
+     */
     public int getAstrophageAmount() {
         return astrophage == null ? 0 : astrophage.size();
     }
 
+    /**
+     * Gives the ammount of all astrophages - dead and alive.
+     * @return the ammount of all astrophages - dead and alive
+     */
     public int getAllAstroAmount() {
-    return allAstroAmount;
-}
+        return allAstroAmount;
+    }
 }

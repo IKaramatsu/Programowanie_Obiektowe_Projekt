@@ -2,6 +2,11 @@ package simulation;
 
 
 public class SimOutput {
+    /**
+     * Calculates the average energy of all astrophages currently on the board.
+     * @param sim the running simulation
+     * @return the average energy of all astrophages currently on the board
+     */
     public  static float getAverageEnergy(Simulation sim) {
 
         if (sim.getAstrophage().isEmpty()) {

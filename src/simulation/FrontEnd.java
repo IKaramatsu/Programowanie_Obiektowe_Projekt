@@ -36,6 +36,7 @@ public class FrontEnd extends Application {
     Pane root = new Pane();
     Simulation simulation;
 
+    
     @Override
     public void start(Stage stage) {
         UserInput input = new UserInput();
@@ -92,6 +93,9 @@ public class FrontEnd extends Application {
         stage.show();
     }
 
+    /**
+     * Draws the board.
+     */
     public void drawBoard() {
         gcData.clearRect(0, 0, 1920, 1080);
         //dane 

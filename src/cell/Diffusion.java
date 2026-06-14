@@ -1,6 +1,11 @@
 package cell;
 
 public class Diffusion {
+    /**
+     * Spreads the light between neighbouring cells more equally.
+     * @param grid the board the cells are on
+     * @param size the size of the board
+     */
     public static void diffuse(Cell[][] grid, int size) {
         float[][] newBrightness = new float[size][size];
 
