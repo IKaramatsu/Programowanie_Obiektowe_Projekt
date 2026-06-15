@@ -9,6 +9,9 @@ public class UserInput {
     public int lifeLength;
     public int coreAmount;
 
+    /**
+     * Saves the starting values of the simulation inputted by the user.
+     */
     public void getInput() {
         Scanner myObj = new Scanner(System.in);
         System.out.println("Enter the starting amount of astrophage:");

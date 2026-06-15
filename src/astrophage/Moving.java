@@ -4,6 +4,7 @@ import simulation.Randomizer;
 import cell.Cell;
 
 public class Moving {
+    // coordinates of specyfic directions
     private static int[][] directions = {
         {1, 0}, // up
         {1, 1}, // right-up
@@ -15,6 +16,12 @@ public class Moving {
         {1, -1} //left-up
     };
 
+    /**
+     * Analizes the neighbouring cells of a given astrophage (including the one it's on) and returns the brightest one. 
+     * @param astro the given astrophage
+     * @param grid the board the astrophage is on
+     * @return the coordinates of the brightest neighbouring cell
+     */
     public static int[] analyze(Astrophage astro, Cell[][] grid){
         int astroX = astro.getX();
         int astroY = astro.getY();
@@ -47,6 +54,13 @@ public class Moving {
         return new int[]{bestPlaceX, bestPlaceY};
     }
 
+    /**
+     * Moves the given astrophage to the brightest neighbouring place on the board.
+     * If the astrophage is already on the brightest place, moves it to a random neighbouring place instead.
+     * @param astro the moved astrophage
+     * @param grid the board the astrophage is on
+     * @param bestPlace the coordinates of the brightest neighbouring cell
+     */
     public static void deciding(Astrophage astro, Cell[][] grid, int[] bestPlace){
         int astroX = astro.getX();
         int astroY = astro.getY();
@@ -79,17 +93,18 @@ public class Moving {
         }
     }
 
+    /**
+     * Moves the given astrophage, decreases it's energy and absorbs the light from the cell it moved to.
+     * If the move makes the astrophage's energy lesser or equal to 0, makes it not alive and it does not absorb the light.
+     * @param astro the given astrophage
+     * @param grid the board the astrophage is on
+     * @param movementCost the energy cont of the astrophage's movement
+     */
     public static void move(Astrophage astro, Cell[][] grid, float movementCost){
-        int x = astro.getX();
-        int y = astro.getY();
-        Cell cell = grid[y][x];
-        
-        //if(cell.getBrightness() == 0) {
-            int[] bestPlace = analyze(astro, grid);
-            deciding(astro, grid, bestPlace);
-            astro.setEnergy(astro.getEnergy() - movementCost);
-            Exhaustion.exhaustion(astro);
-        //}
+        int[] bestPlace = analyze(astro, grid);
+        deciding(astro, grid, bestPlace);
+        astro.setEnergy(astro.getEnergy() - movementCost);
+        Exhaustion.exhaustion(astro);
         
         Absorption.absorption(astro, grid);
     }

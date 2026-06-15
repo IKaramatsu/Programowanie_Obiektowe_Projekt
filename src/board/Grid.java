@@ -1,8 +1,12 @@
 package board;
 import cell.Cell;
-import simulation.RandomVariables;
 
 public class Grid {
+    /**
+     * Creates an empty square grid of cells of a given size for the astrophages to move on.
+     * @param size number of cells per edge of the board
+     * @return an empty grid
+     */
     public Cell[][] create(int size){
         Cell[][] grid = new Cell[size][size];
 
@@ -12,8 +16,5 @@ public class Grid {
             }
         }
         return grid;
-
-
-        
     }
 }
