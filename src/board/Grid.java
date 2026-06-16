@@ -1,6 +1,8 @@
 package board;
 import cell.Cell;
-
+/**
+     * creates grid out of cells
+     */
 public class Grid {
     /**
      * Creates an empty square grid of cells of a given size for the astrophages to move on.

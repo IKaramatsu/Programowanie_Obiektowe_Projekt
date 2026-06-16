@@ -1,6 +1,9 @@
 package cell;
 
 import simulation.RandomVariables;
+/**
+     * All the methods related to managinc cores
+     */
 
 public class Core {
     private static int coreCount = 0;

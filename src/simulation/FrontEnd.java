@@ -20,8 +20,15 @@ import cell.Core;
 //import simulation.RandomVariables;
 //import java.util.Random;
 
+
+/**
+ * the class is responsible for the visual representation to the simulation. it uses javaFx libriary to create GUI
+ */
 public class FrontEnd extends Application {
 
+    /**
+     * implements the initial resorces and layers
+     */
     Canvas Background = new Canvas(1920, 1080);
     Canvas Board = new Canvas(800, 800);
     Canvas AstrophageLayer = new Canvas(800, 800);
@@ -35,6 +42,11 @@ public class FrontEnd extends Application {
     Image GUI = new Image(getClass().getResourceAsStream("/resources/astrophage ABM simulation.png"));
     Pane root = new Pane();
     Simulation simulation;
+    /**
+     * Collects user input, sets up canvas layers
+     * draws initial state
+     * and starts the animation timer
+     */
 
     
     @Override
@@ -72,7 +84,10 @@ public class FrontEnd extends Application {
 
         AnimationTimer timer = new AnimationTimer() {
             private long lastUpdate = 0;
-
+            /**
+             * Called every frame. Updates simulation and redraws every 500ms.
+             * Stops automatically when simulation ends.
+             */
             @Override
             public void handle(long now) {
 
@@ -94,7 +109,9 @@ public class FrontEnd extends Application {
     }
 
     /**
-     * Draws the board.
+     * Renders every frame.
+     * Draws the grid using brightness as base, astrophage agents on separate blended layers, and live simulation statistics.
+     * Displays an end screen when the simulation finishes.
      */
     public void drawBoard() {
         gcData.clearRect(0, 0, 1920, 1080);
@@ -133,7 +150,7 @@ public class FrontEnd extends Application {
             }
         }
 
-        // blending mody zeby wygladalo hot
+
         //astrofagi
         gcAstro.clearRect(0, 0, 800, 800);
         gcAstro2.clearRect(0, 0, 800, 800);

@@ -4,6 +4,9 @@ import java.util.List;
 
 import astrophage.Astrophage;
 
+/**
+     * class responsible fir creating and managing invidual cells of the board
+     */
 public class Cell {
     private int x, y;
     private List<Astrophage> agents;

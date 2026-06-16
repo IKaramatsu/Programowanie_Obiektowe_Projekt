@@ -1,6 +1,8 @@
 package simulation;
 
-
+/**
+     * Contains major part of the output variables
+     */
 public class SimOutput {
     /**
      * Calculates the average energy of all astrophages currently on the board.

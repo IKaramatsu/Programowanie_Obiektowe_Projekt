@@ -1,5 +1,7 @@
 package cell;
-
+/**
+     * creates gradient of light
+     */
 public class Light {
 
     public void regenerate(float lightGiven, Cell[][] grid, int size, Cell core){

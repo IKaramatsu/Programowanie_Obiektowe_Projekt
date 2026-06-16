@@ -1,5 +1,8 @@
 package cell;
 
+/**
+     * diffuses light from the gradient accross the board
+     */
 public class Diffusion {
     /**
      * Spreads the light between neighbouring cells more equally.

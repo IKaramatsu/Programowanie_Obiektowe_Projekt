@@ -1,6 +1,9 @@
 package simulation;
 
 import java.util.Random;
+/**
+     * Random variables for random variables
+     */
 
 public class Randomizer {
     private static Random random = new Random();
