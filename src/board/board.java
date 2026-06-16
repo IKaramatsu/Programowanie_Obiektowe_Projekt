@@ -2,6 +2,9 @@ package board;
 
 //import cell.Cell;
 //import board.Grid;
+/**
+     * initialized the board
+     */
 
 public class Board {
     private int size;

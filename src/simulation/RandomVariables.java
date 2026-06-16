@@ -1,7 +1,9 @@
 package simulation;
 
 import astrophage.Astrophage;
-
+ /**
+     * The class responsible for generating random values for the model
+     */
 public class RandomVariables {
 
     /**

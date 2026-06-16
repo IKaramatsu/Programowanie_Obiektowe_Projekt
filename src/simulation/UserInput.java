@@ -1,6 +1,8 @@
 package simulation;
 import java.util.Scanner;
-
+/**
+     * The class handles the input of all changable variables 
+     */
 public class UserInput {
     public int agentAmount;
     public int boardSize;

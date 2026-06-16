@@ -12,7 +12,9 @@ import cell.Diffusion;
 import cell.Light;
 import java.util.List;
 import java.util.ArrayList;
-
+ /**
+     * The class resposible for combining all the elements of the model together and performing the simulation steps
+     */
 public class Simulation {
     //private Board board;
     private Cell[][] grid;

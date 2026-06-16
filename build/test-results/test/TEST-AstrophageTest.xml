@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AstrophageTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-06-16T11:35:20.984Z" hostname="TS-COMPUTER" time="0.046">
+  <properties/>
+  <testcase name="testAgingIncrementsAge()" classname="AstrophageTest" time="0.019"/>
+  <testcase name="testCoreDeathWhenNoBrightness()" classname="AstrophageTest" time="0.002"/>
+  <testcase name="testAbsorptionDecreasesBrightness()" classname="AstrophageTest" time="0.001"/>
+  <testcase name="testSimulationStepCountIncrements()" classname="AstrophageTest" time="0.006"/>
+  <testcase name="testExhaustionKillsAstrophage()" classname="AstrophageTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
